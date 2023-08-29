@@ -70,6 +70,9 @@ default_cfgs = {
     'vit_small_patch16_224': _cfg(
         url='https://storage.googleapis.com/vit_models/augreg/'
             'S_16-i21k-300ep-lr_0.001-aug_light1-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_224.npz'),
+    'vit_small_patch16_224_': _cfg(
+        url='https://storage.googleapis.com/vit_models/augreg/'
+            'S_16-i21k-300ep-lr_0.001-aug_light1-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_224.npz'),
     'vit_small_patch16_384': _cfg(
         url='https://storage.googleapis.com/vit_models/augreg/'
             'S_16-i21k-300ep-lr_0.001-aug_light1-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_384.npz',
@@ -572,10 +575,10 @@ def vit_small_patch16_224_(pretrained=False, **kwargs):
     """ ViT-Small (ViT-S/16)
     NOTE I've replaced my previous 'small' model definition and weights with the small variant from the DeiT paper
     """
-    model_kwargs = dict(patch_size=16, embed_dim=384, depth=12, num_heads=6)
-    model = _create_vision_transformer('vit_small_patch16_224', pretrained=pretrained, **dict(model_kwargs, **kwargs))
-    # model = (img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=768, depth=12,
-    #              num_heads=12, mlp_ratio=4., qkv_bias=True, representation_size=None, distilled=False,
-    #              drop_rate=0., attn_drop_rate=0., drop_path_rate=0., embed_layer=PatchEmbed, norm_layer=None,
-    #              act_layer=None, weight_init=''):
+    # model_kwargs = dict(patch_size=16, embed_dim=384, depth=12, num_heads=6)
+    # model = _create_vision_transformer('vit_small_patch16_224_', pretrained=pretrained, **dict(model_kwargs, **kwargs))
+    model = VisionTransformer(img_size=224, patch_size=16, in_chans=3, num_classes=1000, embed_dim=384, depth=12,
+                 num_heads=6, mlp_ratio=4., qkv_bias=True, representation_size=None, distilled=False,
+                 drop_rate=0., attn_drop_rate=0., drop_path_rate=0., embed_layer=PatchEmbed, norm_layer=None,
+                 act_layer=None, weight_init='')
     return model
