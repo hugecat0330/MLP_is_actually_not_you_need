@@ -20,6 +20,7 @@ from engine import train_one_epoch, evaluate
 from losses import DistillationLoss
 from samplers import RASampler
 import models
+from models.vit_revised import vit_small_patch16_224_
 import utils
 # from flops_counter import get_model_complexity_info
 
